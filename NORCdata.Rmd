@@ -7,14 +7,33 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tigerstats)
+library(tidyverse)
 ```
 
 at https://gss.norc.org/get-the-data/spss download the zip file 2018.spss.zip
 
-Use package 'foreign' to unzip to a csv file
+Upload the zip file; it comes in as a .sav file;
+
 
 ```{r}
 library(foreign)
+# put data set name in the read
+GPSS <- read.spss("dataset.sav", use.value.label=TRUE, to.data.frame=TRUE)
+```
 
+
+## print RACE and CAPPUN
+
+```{r}
+GPSS$RACE
+GPSS$CAPPUN
+```
+
+Notice that there are <NA> entries; remove these 
+
+```{r}
+table1 = xtabs(~CAPPUN + RACE, na.action = 'na.omit', drop.unused.levels=T, data=GPSS)
+table1
 ```
 
