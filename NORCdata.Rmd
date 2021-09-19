@@ -11,6 +11,13 @@ library(tigerstats)
 library(tidyverse)
 ```
 
+<!-- The research question: is whether one favors capital punishment or not independent of race? -->
+
+$H_0$: race and opinion on capital punishment are independent.  
+$H_A$: opinion on capital opinion is related to race
+
+
+<!--  Download the data from NORC -->
 at https://gss.norc.org/get-the-data/spss download the zip file 2018.spss.zip
 
 Upload the zip file; it comes in as a .sav file;
@@ -21,9 +28,18 @@ library(foreign)
 # put data set name in the read
 GPSS <- read.spss("dataset.sav", use.value.label=TRUE, to.data.frame=TRUE)
 ```
+## Descriptive
+
+### Graphical summary: 
+  
+Barplot; use percent,
+
+### Numerical summary:
 
 
-## print RACE and CAPPUN
+### Inferential
+
+ print RACE and CAPPUN
 
 ```{r}
 GPSS$RACE
