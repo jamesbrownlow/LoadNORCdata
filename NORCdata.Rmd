@@ -29,7 +29,7 @@ GPSS <- read.spss("dataset.sav", use.value.label=TRUE, to.data.frame=TRUE)
 GPSS$RACE
 GPSS$CAPPUN
 ```
-
+Both variables are categorical; load the appropriate helper file
 Notice that there are <NA> entries; remove these 
 
 ```{r}
