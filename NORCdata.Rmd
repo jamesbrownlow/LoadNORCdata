@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tigerstats)
 library(tidyverse)
+source("fisherX2.R")
 ```
 
 <!-- The research question: is whether one favors capital punishment or not independent of race? -->
