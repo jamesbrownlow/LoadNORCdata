@@ -54,9 +54,6 @@ Bar plot; use percent
 
 # Inferential
 
- print RACE and CAPPUN
-
-
 ```{r}
 table1 = xtabs(~CAPPUN + RACE, na.action = 'na.omit', drop.unused.levels=T, data=GPSS)
 table1
