@@ -1,0 +1,20 @@
+---
+title: "NORC GSS data"
+author: "Dr. J"
+date: "9/19/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+at https://gss.norc.org/get-the-data/spss download the zip file 2018.spss.zip
+
+Use package 'foreign' to unzip to a csv file
+
+```{r}
+library(foreign)
+
+```
+
