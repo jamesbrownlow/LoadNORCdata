@@ -20,7 +20,7 @@ $H_A$: opinion on capital opinion is related to race
 <!--  Download the data from NORC -->
 at https://gss.norc.org/get-the-data/spss download the zip file 2018.spss.zip
 
-Upload the zip file; it comes in as a .sav file;
+<!-- Upload the zip file; it comes in as a .sav file -->
 
 
 ```{r}
@@ -28,25 +28,28 @@ library(foreign)
 # put data set name in the read
 GPSS <- read.spss("dataset.sav", use.value.label=TRUE, to.data.frame=TRUE)
 ```
-## Descriptive
 
-### Graphical summary: 
-  
-Barplot; use percent,
-
-### Numerical summary:
-
-
-### Inferential
-
- print RACE and CAPPUN
 
 ```{r}
 GPSS$RACE
 GPSS$CAPPUN
 ```
-Both variables are categorical; load the appropriate helper file
-Notice that there are <NA> entries; remove these 
+
+<!--Both variables are categorical; load the appropriate helper file.  Notice that there are <NA> entries; remove these -->
+
+## Descriptive Summary
+
+### Graphical summary: 
+  
+Bar plot; use percent
+
+### Numerical summary:
+
+
+## Inferential
+
+ print RACE and CAPPUN
+
 
 ```{r}
 table1 = xtabs(~CAPPUN + RACE, na.action = 'na.omit', drop.unused.levels=T, data=GPSS)
