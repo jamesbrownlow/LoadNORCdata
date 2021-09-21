@@ -1,0 +1,99 @@
+---
+title: "Write up 06"
+output:
+  html_document:
+    toc: true
+    theme: united
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: "Your name here"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tigerstats)
+library(tidyverse)
+source("fisherX2.R")
+```
+
+# Introduction
+  
+
+<!-- The research question: is whether one favors capital punishment or not independent of race? -->
+
+
+$H_0$: race and opinion on capital punishment are independent.  
+$H_A$: opinion on capital opinion is related to race
+
+
+<!--  Download the data from NORC -->
+Download the SPSS zip files 1988 and 2018 
+
+https://gss.norc.org/get-the-data/spss
+
+<!-- Then upload the zip files to Rstudio.cloud.  They will unzip automatically
+They come in as a .sav file -->
+
+
+```{r}
+library(foreign)
+# put data set name in the read,spss
+GSSall <- read.spss("GSS1998.sav",  to.data.frame=TRUE,duplicated.value.labels="condense",
+  add.undeclared.levels = "no")
+
+GSS = GSSall[, c('RACE','CAPPUN')]
+GSS=na.omit(GSS)
+
+```
+
+<!-- Both variables are categorical; load the appropriate helper file. -->
+
+
+# Descriptive Summary
+
+## Graphical summary: 
+  
+### Plot barplots
+
+```{r}
+dd2 <- GSS %>% group_by(RACE,CAPPUN) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+basicC <- ggplot(dd2,aes(x=RACE,y=count,fill=CAPPUN))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=RACE,y=prcnt*100,fill=CAPPUN)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+
+## Numerical summary:
+
+
+# Inferential
+
+<!-- use table1 below to do a chisq.test, if you find that RACE and CAPPUN are related, use fisher.two() to find which categories are significantly different   -->
+
+
+```{r}
+table1 = xtabs(~CAPPUN + RACE, na.action = 'na.omit', drop.unused.levels=T, data=GSS)
+
+```
+
+<!-- use chisq test to determine whether RACE and CAPPUN are independent.   If there are dependent, use the function fisher.two to determing which levels are dependent -->
+
+<!-- chisq test here -->
+
+
+
+<!-- and fisher.two test here -->
+
+```{r}
+fisher.two(GSS$RACE, GSS$CAPPUN)
+```
+
+
+# Discussion/Conclusions
+
+<!-- be sure to compare results from the other analysis in each branch -->
+
